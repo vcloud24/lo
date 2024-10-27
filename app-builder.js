@@ -1,46 +1,67 @@
+// Function to preview HTML in a new tab
 function previewHTML() {
     const fileInput = document.getElementById('fileInput');
-    const previewFrame = document.getElementById('html-preview');
+    const htmlInput = document.getElementById('htmlInput').value;
+    let htmlContent;
 
-    const file = fileInput.files[0];
-    if (file) {
+    if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
         const reader = new FileReader();
         reader.onload = function(event) {
-            previewFrame.srcdoc = event.target.result;
+            openPreviewTab(event.target.result);
         };
         reader.readAsText(file);
+    } else if (htmlInput) {
+        openPreviewTab(htmlInput);
     } else {
-        alert("Please select an HTML file to preview.");
+        alert("Please input HTML or select an HTML file to preview.");
     }
 }
 
+function openPreviewTab(content) {
+    const previewWindow = window.open();
+    previewWindow.document.write(content);
+}
+
+// Function to download the HTML as an Android or Windows app
 function downloadApp(platform) {
     const fileInput = document.getElementById('fileInput');
-    const file = fileInput.files[0];
+    const htmlInput = document.getElementById('htmlInput').value;
+    let htmlContent;
 
-    if (!file) {
-        alert("Please select an HTML file to download as an app.");
-        return;
+    if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            htmlContent = event.target.result;
+            initiateAppDownload(htmlContent, platform);
+        };
+        reader.readAsText(file);
+    } else if (htmlInput) {
+        htmlContent = htmlInput;
+        initiateAppDownload(htmlContent, platform);
+    } else {
+        alert("Please input HTML or select an HTML file to download as an app.");
     }
+}
 
-    const reader = new FileReader();
-    reader.onload = function(event) {
-        const htmlContent = event.target.result;
-        if (platform === 'android') {
-            generateAndroidApp(htmlContent);
-        } else if (platform === 'windows') {
-            generateWindowsApp(htmlContent);
-        }
-    };
-    reader.readAsText(file);
+function initiateAppDownload(htmlContent, platform) {
+    const vgamesSlide = "<h1>VGAMES System Apps</h1>";
+    const combinedContent = vgamesSlide + htmlContent;
+
+    if (platform === 'android') {
+        generateAndroidApp(combinedContent);
+    } else if (platform === 'windows') {
+        generateWindowsApp(combinedContent);
+    }
 }
 
 function generateAndroidApp(htmlContent) {
     alert("Generating Android app...");
-    // Android app generation logic here
+    // Add Android app generation logic
 }
 
 function generateWindowsApp(htmlContent) {
     alert("Generating Windows app...");
-    // Windows app generation logic here
+    // Add Windows app generation logic
 }
