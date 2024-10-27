@@ -12,14 +12,24 @@
     <header>
         <h1>VGAMES HTML Preview & Download</h1>
     </header>
-    <main>
-        <input type="file" id="fileInput" accept=".html" />
-        <button onclick="previewHTML()">Preview HTML</button>
-        <div id="preview-player">
-            <iframe id="html-preview" frameborder="0"></iframe>
+    <main id="main-content">
+        <p id="mobile-warning" style="display: none;">This website is only accessible on PC. Please switch to a desktop device.</p>
+        <div id="content">
+            <input type="file" id="fileInput" accept=".html" />
+            <button onclick="previewHTML()">Preview HTML</button>
+            <div id="preview-player">
+                <iframe id="html-preview" frameborder="0"></iframe>
+            </div>
+            <button onclick="downloadApp('android')">Download for Android</button>
+            <button onclick="downloadApp('windows')">Download for Windows</button>
         </div>
-        <button onclick="downloadApp('android')">Download for Android</button>
-        <button onclick="downloadApp('windows')">Download for Windows</button>
     </main>
+    <script>
+        // Check for mobile and hide content if on mobile device
+        if (/Mobi|Android/i.test(navigator.userAgent)) {
+            document.getElementById("mobile-warning").style.display = "block";
+            document.getElementById("content").style.display = "none";
+        }
+    </script>
 </body>
 </html>
