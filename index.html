@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VGAMES Preview & Download</title>
+    <title>VGAMES HTML Preview & Download</title>
     <link rel="stylesheet" href="style.css">
+    <script src="popup.js" defer></script>
+    <script src="app-builder.js" defer></script>
 </head>
 <body>
     <header>
-        <h1>VGAMES HTML Preview</h1>
+        <h1>VGAMES HTML Preview & Download</h1>
     </header>
     <main>
+        <input type="file" id="fileInput" accept=".html" />
+        <button onclick="previewHTML()">Preview HTML</button>
         <div id="preview-player">
-            <iframe src="preview.html" id="html-preview" frameborder="0"></iframe>
+            <iframe id="html-preview" frameborder="0"></iframe>
         </div>
         <button onclick="downloadApp('android')">Download for Android</button>
         <button onclick="downloadApp('windows')">Download for Windows</button>
     </main>
-    <script src="app-builder.js"></script>
-    <script src="popup.js"></script>
 </body>
 </html>
