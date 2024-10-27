@@ -44,4 +44,3 @@ function generateWindowsApp(htmlContent) {
     alert("Generating Windows app...");
     // Windows app generation logic here
 }
-
