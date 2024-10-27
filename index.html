@@ -3,33 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VGAMES HTML Preview & Download</title>
+    <title>VGAMES HTML Preview & App Generator</title>
     <link rel="stylesheet" href="style.css">
-    <script src="popup.js" defer></script>
+    <script src="device-check.js" defer></script>
     <script src="app-builder.js" defer></script>
+    <script src="popup.js" defer></script>
 </head>
 <body>
     <header>
-        <h1>VGAMES HTML Preview & Download</h1>
+        <h1><img src="vgames-logo.png" alt="VGAMES Logo"> VGAMES HTML Preview & App Generator</h1>
     </header>
     <main id="main-content">
-        <p id="mobile-warning" style="display: none;">This website is only accessible on PC. Please switch to a desktop device.</p>
-        <div id="content">
+        <div class="input-section">
+            <textarea id="htmlInput" placeholder="Write or paste HTML code here..."></textarea>
             <input type="file" id="fileInput" accept=".html" />
-            <button onclick="previewHTML()">Preview HTML</button>
-            <div id="preview-player">
-                <iframe id="html-preview" frameborder="0"></iframe>
-            </div>
-            <button onclick="downloadApp('android')">Download for Android</button>
-            <button onclick="downloadApp('windows')">Download for Windows</button>
         </div>
+        <button onclick="previewHTML()">Preview HTML</button>
+        <button onclick="downloadApp('android')">Download for Android</button>
+        <button onclick="downloadApp('windows')">Download for Windows</button>
     </main>
-    <script>
-        // Check for mobile and hide content if on mobile device
-        if (/Mobi|Android/i.test(navigator.userAgent)) {
-            document.getElementById("mobile-warning").style.display = "block";
-            document.getElementById("content").style.display = "none";
-        }
-    </script>
+    <div id="mobile-warning">
+        <p>This website is accessible on PC only.</p>
+    </div>
 </body>
 </html>
