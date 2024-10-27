@@ -2,24 +2,39 @@ body {
     background-color: #121212;
     color: #ffffff;
     font-family: Arial, sans-serif;
-    text-align: center;
-    padding: 0;
-    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 header h1 {
     font-size: 2em;
     color: #4CAF50;
-    animation: glow 1s infinite alternate;
-    margin-top: 20px;
+    display: flex;
+    align-items: center;
 }
 
-#preview-player {
+header img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.input-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+textarea {
     width: 80%;
-    height: 60vh;
-    background-color: #1e1e1e;
-    border: 2px solid #4CAF50;
-    margin: 20px auto;
+    height: 150px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #4CAF50;
 }
 
 button {
@@ -29,32 +44,16 @@ button {
     padding: 10px 20px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin: 10px;
+    margin: 5px;
 }
 
 button:hover {
     background-color: #3e8e41;
 }
 
-@keyframes glow {
-    from {
-        text-shadow: 0 0 10px #4CAF50;
-    }
-    to {
-        text-shadow: 0 0 20px #4CAF50, 0 0 30px #4CAF50;
-    }
-}
-
-/* Mobile warning styling */
 #mobile-warning {
+    display: none;
+    color: #f44336;
     font-size: 1.5em;
-    color: red;
-    margin-top: 20%;
-}
-
-@media (max-width: 768px) {
-    #preview-player {
-        width: 90%;
-        height: 50vh;
-    }
+    text-align: center;
 }
