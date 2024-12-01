@@ -3,27 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VGAMES HTML Preview & App Generator</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="device-check.js" defer></script>
-    <script src="app-builder.js" defer></script>
-    <script src="popup.js" defer></script>
+    <title>Multipurpose Web App</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
-    <header>
-        <h1><img src="vgames-logo.png" alt="VGAMES Logo"> VGAMES HTML Preview & App Generator</h1>
-    </header>
-    <main id="main-content">
-        <div class="input-section">
-            <textarea id="htmlInput" placeholder="Write or paste HTML code here..."></textarea>
-            <input type="file" id="fileInput" accept=".html" />
+    <div id="menu">
+        <button onclick="showSection('timeTeller')">Time Teller</button>
+        <button onclick="showSection('camera')">Camera</button>
+        <button onclick="showSection('browser')">Browser</button>
+        <button onclick="showSection('ticTacToe')">Tic Tac Toe</button>
+    </div>
+    <div id="main-content">
+        <!-- Time Teller -->
+        <div id="timeTeller" class="section">
+            <h1>Current Time</h1>
+            <p id="time-display"></p>
+            <button onclick="showTime()">Show Time</button>
         </div>
-        <button onclick="previewHTML()">Preview HTML</button>
-        <button onclick="downloadApp('android')">Download for Android</button>
-        <button onclick="downloadApp('windows')">Download for Windows</button>
-    </main>
-    <div id="mobile-warning">
-        <p>This website is accessible on PC only.</p>
+
+        <!-- Camera -->
+        <div id="camera" class="section">
+            <h1>Camera</h1>
+            <video id="camera-feed" autoplay></video>
+            <button onclick="startCamera()">Start Camera</button>
+        </div>
+
+        <!-- Browser -->
+        <div id="browser" class="section">
+            <h1>Web Browser</h1>
+            <input id="url-input" type="text" placeholder="Enter URL">
+            <button onclick="loadWebsite()">Go</button>
+            <iframe id="browser-frame"></iframe>
+        </div>
+
+        <!-- Tic Tac Toe -->
+        <div id="ticTacToe" class="section">
+            <h1>Tic Tac Toe Multiplayer</h1>
+            <div id="tic-tac-toe-board">
+                <div class="row">
+                    <div class="cell" onclick="makeMove(0, 0)"></div>
+                    <div class="cell" onclick="makeMove(0, 1)"></div>
+                    <div class="cell" onclick="makeMove(0, 2)"></div>
+                </div>
+                <div class="row">
+                    <div class="cell" onclick="makeMove(1, 0)"></div>
+                    <div class="cell" onclick="makeMove(1, 1)"></div>
+                    <div class="cell" onclick="makeMove(1, 2)"></div>
+                </div>
+                <div class="row">
+                    <div class="cell" onclick="makeMove(2, 0)"></div>
+                    <div class="cell" onclick="makeMove(2, 1)"></div>
+                    <div class="cell" onclick="makeMove(2, 2)"></div>
+                </div>
+            </div>
+            <p id="tic-tac-toe-status"></p>
+            <button onclick="resetGame()">Reset Game</button>
+        </div>
     </div>
 </body>
 </html>
