@@ -3,10 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Preview</title>
+    <title>HTML Previewer</title>
     <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(270deg, #4facfe, #00f2fe, #ff9a9e, #fad0c4);
+            background-size: 800% 800%;
+            animation: gradientAnimation 15s ease infinite;
+            color: #fff;
+            text-align: center;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h2 {
+            margin-top: 20px;
+        }
+
+        /* Container for file input */
+        .upload-container {
+            margin: 20px auto;
+            width: 50%;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .upload-container input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .upload-container input[type="file"] {
+            background-color: #4caf50;
+            color: #fff;
+        }
+
+        .upload-container input[type="file"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Preview frame */
+        #preview-frame {
+            width: 80%;
+            height: 500px;
+            margin: 20px auto;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ddd;
+        }
+    </style>
 </head>
 <body>
-    <h2>Your HTML file will preview here!</h2>
+    <!-- Title -->
+    <h2>Your HTML File Will Preview Here!</h2>
+
+    <!-- Upload Container -->
+    <div class="upload-container">
+        <p>Select an HTML file to preview:</p>
+        <input type="file" id="html-file" accept=".html" />
+    </div>
+
+    <!-- Preview Frame -->
+    <iframe id="preview-frame"></iframe>
+
+    <!-- Footer -->
+    <footer>
+        <p>Made with ❤️ by [Your Name].</p>
+    </footer>
+
+    <script>
+        // JavaScript to handle file input and preview
+        document.getElementById("html-file").addEventListener("change", function (event) {
+            const file = event.target.files[0];
+
+            if (file && file.type === "text/html") {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    const previewFrame = document.getElementById("preview-frame");
+                    const doc = previewFrame.contentWindow.document;
+                    doc.open();
+                    doc.write(e.target.result);
+                    doc.close();
+                };
+
+                reader.readAsText(file);
+            } else {
+                alert("Please select a valid HTML file.");
+            }
+        });
+    </script>
 </body>
 </html>
