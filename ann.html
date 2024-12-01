@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VGAMES Anonymous Browser</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #141e30, #243b55);
+            color: white;
+            overflow: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        #logo {
+            font-size: 2.5em;
+            animation: glow 2s infinite;
+        }
+
+        /* Glow animation */
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff; }
+            50% { text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff; }
+            100% { text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff; }
+        }
+
+        /* Browser container */
+        .browser-container {
+            display: flex;
+            flex-direction: column;
+            height: 90vh;
+            margin: 10px;
+            border: 2px solid #00ffff;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .controls {
+            display: flex;
+            background: #000000;
+            padding: 10px;
+            gap: 10px;
+        }
+
+        .controls input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #00ffff;
+            border-radius: 5px;
+            background: transparent;
+            color: white;
+            font-size: 1em;
+        }
+
+        .controls button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #00ffff;
+            color: #141e30;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .controls button:hover {
+            background: #00ccff;
+        }
+
+        /* Browser window */
+        #browser-frame {
+            flex: 1;
+            width: 100%;
+            border: none;
+            background: black;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 id="logo">VGAMES</h1>
+    </header>
+    <div class="browser-container">
+        <div class="controls">
+            <input type="text" id="url-input" placeholder="Enter URL (e.g., https://example.com)">
+            <button onclick="loadURL()">Browse</button>
+            <button onclick="openGoogle()">Google</button>
+        </div>
+        <iframe id="browser-frame" sandbox="allow-scripts allow-same-origin" allow="fullscreen"></iframe>
+    </div>
+
+    <script>
+        // Set initial fullscreen and loading state
+        let isFullScreen = false;
+
+        // Function to load a URL
+        function loadURL() {
+            const urlInput = document.getElementById('url-input').value;
+            const browserFrame = document.getElementById('browser-frame');
+            if (!urlInput.trim()) {
+                alert("Please enter a URL!");
+                return;
+            }
+            const url = urlInput.startsWith('http') ? urlInput : `https://${urlInput}`;
+            browserFrame.src = url;
+        }
+
+        // Function to open Google Search
+        function openGoogle() {
+            const browserFrame = document.getElementById('browser-frame');
+            browserFrame.src = 'https://www.google.com';
+        }
+
+        // Fullscreen toggle with F key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'F' || e.key === 'f') {
+                toggleFullScreen();
+            } else if (e.key === 'Escape' && isFullScreen) {
+                exitFullScreen();
+            }
+        });
+
+        // Enter fullscreen
+        function toggleFullScreen() {
+            const elem = document.documentElement;
+            if (!isFullScreen) {
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                } else if (elem.mozRequestFullScreen) {
+                    elem.mozRequestFullScreen();
+                } else if (elem.webkitRequestFullscreen) {
+                    elem.webkitRequestFullscreen();
+                } else if (elem.msRequestFullscreen) {
+                    elem.msRequestFullscreen();
+                }
+                isFullScreen = true;
+            }
+        }
+
+        // Exit fullscreen
+        function exitFullScreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+            isFullScreen = false;
+        }
+
+        // Set glowing logo visibility while loading
+        const browserFrame = document.getElementById('browser-frame');
+        browserFrame.addEventListener('loadstart', () => {
+            document.getElementById('logo').style.display = 'block';
+        });
+        browserFrame.addEventListener('load', () => {
+            document.getElementById('logo').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
