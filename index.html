@@ -3,63 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multipurpose Web App</title>
+    <title>VGAMES Interactive</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
 </head>
 <body>
-    <div id="menu">
-        <button onclick="showSection('timeTeller')">Time Teller</button>
-        <button onclick="showSection('camera')">Camera</button>
-        <button onclick="showSection('browser')">Browser</button>
-        <button onclick="showSection('ticTacToe')">Tic Tac Toe</button>
+    <div id="loading" class="loading-screen">
+        <h1 id="loading-text">VGAMES</h1>
     </div>
-    <div id="main-content">
-        <!-- Time Teller -->
-        <div id="timeTeller" class="section">
-            <h1>Current Time</h1>
-            <p id="time-display"></p>
-            <button onclick="showTime()">Show Time</button>
-        </div>
 
-        <!-- Camera -->
-        <div id="camera" class="section">
-            <h1>Camera</h1>
-            <video id="camera-feed" autoplay></video>
-            <button onclick="startCamera()">Start Camera</button>
-        </div>
+    <header>
+        <h1>VGAMES Interactive</h1>
+        <nav>
+            <button onclick="showSection('tic-tac-toe')">🎮 Tic Tac Toe</button>
+            <button onclick="showSection('camera')">📸 Camera</button>
+            <button onclick="showSection('web-browser')">🌐 Web Browser</button>
+            <button onclick="showSection('html-preview')">🖋️ HTML Preview</button>
+        </nav>
+    </header>
 
-        <!-- Browser -->
-        <div id="browser" class="section">
-            <h1>Web Browser</h1>
-            <input id="url-input" type="text" placeholder="Enter URL">
-            <button onclick="loadWebsite()">Go</button>
-            <iframe id="browser-frame"></iframe>
-        </div>
+    <main>
+        <!-- Tic Tac Toe Section -->
+        <section id="tic-tac-toe" class="section" style="display:none;">
+            <h2>🎮 Bluetooth Tic Tac Toe</h2>
+            <div id="game-board"></div>
+            <p id="game-status">Player X's turn</p>
+            <button onclick="resetGame()">🔄 Reset Game</button>
+        </section>
 
-        <!-- Tic Tac Toe -->
-        <div id="ticTacToe" class="section">
-            <h1>Tic Tac Toe Multiplayer</h1>
-            <div id="tic-tac-toe-board">
-                <div class="row">
-                    <div class="cell" onclick="makeMove(0, 0)"></div>
-                    <div class="cell" onclick="makeMove(0, 1)"></div>
-                    <div class="cell" onclick="makeMove(0, 2)"></div>
-                </div>
-                <div class="row">
-                    <div class="cell" onclick="makeMove(1, 0)"></div>
-                    <div class="cell" onclick="makeMove(1, 1)"></div>
-                    <div class="cell" onclick="makeMove(1, 2)"></div>
-                </div>
-                <div class="row">
-                    <div class="cell" onclick="makeMove(2, 0)"></div>
-                    <div class="cell" onclick="makeMove(2, 1)"></div>
-                    <div class="cell" onclick="makeMove(2, 2)"></div>
-                </div>
-            </div>
-            <p id="tic-tac-toe-status"></p>
-            <button onclick="resetGame()">Reset Game</button>
-        </div>
-    </div>
+        <!-- Camera Section -->
+        <section id="camera" class="section" style="display:none;">
+            <h2>📸 Camera</h2>
+            <video id="video" width="640" height="480" autoplay></video>
+            <button onclick="startCamera()">▶️ Start Camera</button>
+        </section>
+
+        <!-- Web Browser Section -->
+        <section id="web-browser" class="section" style="display:none;">
+            <h2>🌐 Web Browser</h2>
+            <input type="text" id="url-input" placeholder="Enter URL">
+            <button onclick="openWebsite()">Go</button>
+            <iframe id="browser-frame" width="90%" height="500"></iframe>
+        </section>
+
+        <!-- HTML Preview Section -->
+        <section id="html-preview" class="section" style="display:none;">
+            <h2>🖋️ HTML Previewer</h2>
+            <textarea id="html-input" placeholder="Write HTML or JavaScript code here"></textarea>
+            <button onclick="previewHTML()">Preview</button>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
