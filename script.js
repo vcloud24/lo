@@ -4,6 +4,13 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
         loadingScreen.style.display = "none";
     }, 3000);
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "previous") {
+        document.body.classList.add("previous-theme");
+        document.getElementById("theme-toggle").textContent = "Switch to New Theme";
+    }
 });
 
 // Section Navigation
@@ -12,6 +19,22 @@ function showSection(sectionId) {
         section.style.display = 'none';
     });
     document.getElementById(sectionId).style.display = 'block';
+}
+
+// Theme Toggle
+function toggleTheme() {
+    const body = document.body;
+    const themeToggle = document.getElementById("theme-toggle");
+
+    if (body.classList.contains("previous-theme")) {
+        body.classList.remove("previous-theme");
+        themeToggle.textContent = "Switch to Previous Theme";
+        localStorage.setItem("theme", "new");
+    } else {
+        body.classList.add("previous-theme");
+        themeToggle.textContent = "Switch to New Theme";
+        localStorage.setItem("theme", "previous");
+    }
 }
 
 // Camera
@@ -29,13 +52,33 @@ function openWebsite() {
     iframe.src = url.startsWith("http") ? url : "http://" + url;
 }
 
+// PDF Viewer
+document.getElementById("pdf-input").addEventListener("change", function (e) {
+    const file = e.target.files[0];
+    if (file && file.type === "application/pdf") {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const pdfFrame = document.getElementById("pdf-frame");
+            pdfFrame.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    } else {
+        alert("Please select a valid PDF file.");
+    }
+});
+
 // HTML Preview
 function previewHTML() {
     const htmlContent = document.getElementById("html-input").value;
-    const previewWindow = window.open("", "_blank");
-    previewWindow.document.open();
-    previewWindow.document.write(htmlContent);
-    previewWindow.document.close();
+    const previewFrame = document.getElementById("preview-frame");
+    const previewPage = document.getElementById("html-preview-page");
+
+    previewFrame.srcdoc = htmlContent;
+    previewPage.style.display = "block";
+}
+
+function closePreview() {
+    document.getElementById("html-preview-page").style.display = "none";
 }
 
 // Tic Tac Toe
