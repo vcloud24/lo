@@ -68,6 +68,12 @@ nav button:hover {
     cursor: pointer;
 }
 
+/* PDF Viewer Styling */
+#pdf-input {
+    margin: 10px auto;
+    display: block;
+}
+
 /* HTML Preview Styling */
 #html-input {
     width: 80%;
@@ -78,6 +84,34 @@ nav button:hover {
 
 iframe {
     border: 1px solid #ddd;
+}
+
+/* Preview Page Styling */
+.preview-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 1000;
+}
+
+#close-preview {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+#close-preview:hover {
+    background-color: #ff6666;
 }
 
 /* Loading Screen */
