@@ -1,9 +1,9 @@
 /* General Styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(270deg, #ff7eb3, #ff758c, #ffce9e);
+    background: linear-gradient(270deg, #1a1a1a, #333333, #4d4d4d);
     background-size: 800% 800%;
     animation: backgroundAnimation 10s ease infinite;
     color: white;
@@ -21,6 +21,11 @@ header h1 {
     color: #ffdd57;
 }
 
+header .logo {
+    height: 50px;
+    margin-bottom: 10px;
+}
+
 nav {
     margin-top: 10px;
 }
@@ -34,6 +39,7 @@ nav button {
     cursor: pointer;
     font-size: 16px;
     border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
 nav button:hover {
@@ -146,4 +152,46 @@ iframe {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
+}
+
+/* Previous Theme Styles */
+body.previous-theme {
+    background: linear-gradient(270deg, #ff7eb3, #ff758c, #ffce9e);
+}
+
+body.previous-theme header {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+body.previous-theme nav button {
+    background-color: #444;
+}
+
+body.previous-theme nav button:hover {
+    background-color: #ff758c;
+}
+
+/* Advertisement Section */
+#advertisement {
+    display: block;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+#advertisement button {
+    background-color: #ff758c;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+#advertisement button:hover {
+    background-color: #ff4444;
 }
